@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Guest\HomeController as GuestHomeController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-});
+Route::get('/', [GuestHomeController::class,'index']);
 
-Route::get('/admin', function () {
-    return view('admin.home');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+//rotte per il back-office
+
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
+    //rotta utente loggato
+    Route::get('/', [AdminHomeController::class,'index'])->name('home');
+    //rotta per la index
+    Route::get('/Project', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/Project{id}', [ProjectController::class, 'show'])->name('projects.show');
+    
+    
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
