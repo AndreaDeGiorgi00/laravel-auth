@@ -27,7 +27,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/', [AdminHomeController::class,'index'])->name('home');
     //rotta per la index
     Route::get('/Project', [ProjectController::class, 'index'])->name('projects.index');
+    //rotta per lo show
     Route::get('/Project{id}', [ProjectController::class, 'show'])->name('projects.show');
+    //rotta per il destroy
+    Route::delete('/Project{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     
     
 });
