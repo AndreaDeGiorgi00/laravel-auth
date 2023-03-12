@@ -31,7 +31,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/Project{id}', [ProjectController::class, 'show'])->name('projects.show');
     //rotta per il destroy
     Route::delete('/Project{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
-    
+    //rotta per il create
+    Route::get('/Project/Create', [ProjectController::class, 'create'])->name('projects.create');
+    //rotta per lo store
+    Route::post('/Project', [ProjectController::class, 'store'])->name('projects.store');
+
     
 });
 
@@ -39,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 require __DIR__.'/auth.php';

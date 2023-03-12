@@ -31,9 +31,11 @@
       </td>
     </tr>
   @endforeach
-
   </tbody>
 </table>
+  <div class="container text-center mt-5">
+    <a href="{{route('admin.projects.create')}}" class="btn btn-success" > crea nuovo elemento</a>
+  </div>
 
 </div>
 @endsection
