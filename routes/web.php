@@ -35,6 +35,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/Project/Create', [ProjectController::class, 'create'])->name('projects.create');
     //rotta per lo store
     Route::post('/Project', [ProjectController::class, 'store'])->name('projects.store');
+    //rottaper update
+    Route::get('/Project{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    //rotta per l'edit
+    Route::put('/Project/{id}', [ProjectController::class, 'update'])->name('projects.update');
+    
 
     
 });

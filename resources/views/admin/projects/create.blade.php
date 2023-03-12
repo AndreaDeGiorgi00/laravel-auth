@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @vite(['resources/js/app.js'])
 @section('content')
-    <form action="{{route('admin.projects.store')}}"  method="POST">
+    <form action="{{route('admin.projects.store')}}"  method="POST" enctype="multipart/form-data">
         @csrf
         <div class="container mt-5 col-6 ">
 
@@ -18,8 +18,13 @@
             <div class="mb-4">
             <label for="descrizione" class="form-label"><h4>Descrizione</h4></label>
             <textarea class="form-control" id="descrizione" rows="3" name="descrizione"></textarea>
-            <div class="text-center">
 
+            <div class="mb-4 mt-4">
+            <label for="image" class="form-label" ><h4>File immagine</h4></label>
+            <input type="file" class="form-control" id="image" name="image">
+            </div>
+
+            <div class="text-center">
             <button type="submit" class="btn btn-success mt-5">salva</button>
             </div>
         </div>
